@@ -1,0 +1,6 @@
+{
+    "aigc_model": true,
+    "model_file_location": "20.safetensors",
+    "framework": "Pytorch",
+    "task": "other"
+}

@@ -1,0 +1,60 @@
+{
+  "works": [
+    {
+      "id": "95d1ed6b-a07e-4eef-b7e3-f2a41fa638c7",
+      "user_id": "3",
+      "title": "杨贵妃霓裳羽衣舞",
+      "video_url": "/api/performance_audio/37fbd760-e5e0-4b16-9463-33f1f9bf850c/wanx_37fbd760-e5e0-4b16-9463-33f1f9bf850c.mp4",
+      "created_at": "2026-03-02T06:39:53Z"
+    },
+    {
+      "id": "7194c35a-e8eb-4839-bb52-4815b9705941",
+      "user_id": "3",
+      "title": "杨贵妃霓裳羽衣舞",
+      "video_url": "/api/performance_audio/4f2e0da3-0383-49b4-bb6d-fdf092671db3/wanx_4f2e0da3-0383-49b4-bb6d-fdf092671db3.mp4",
+      "created_at": "2026-03-27T11:32:12Z"
+    },
+    {
+      "id": "f460f848-9ce2-4e68-aaaf-57d9c8998ff4",
+      "user_id": "3",
+      "title": "杨贵妃霓裳羽衣舞",
+      "video_url": "/api/performance_audio/5645bb76-0718-4d0d-a250-2d3b60bf6027/wanx_5645bb76-0718-4d0d-a250-2d3b60bf6027.mp4",
+      "created_at": "2026-03-27T11:37:45Z"
+    },
+    {
+      "id": "61ff2ead-13b2-46cf-ac7f-db0c8a8a182a",
+      "user_id": "3",
+      "title": "杨贵妃霓裳羽衣舞",
+      "video_url": "/api/performance_audio/5645bb76-0718-4d0d-a250-2d3b60bf6027/wanx_5645bb76-0718-4d0d-a250-2d3b60bf6027.mp4",
+      "created_at": "2026-03-27T11:38:23Z"
+    },
+    {
+      "id": "e5233d62-df95-4d78-9526-96821eb2db02",
+      "user_id": "3",
+      "title": "杨贵妃霓裳羽衣舞",
+      "video_url": "/api/performance_audio/93cf4e3b-9651-4147-8cab-cd40e6e60eb4/wanx_93cf4e3b-9651-4147-8cab-cd40e6e60eb4.mp4",
+      "created_at": "2026-03-27T11:48:45Z"
+    },
+    {
+      "id": "c5a8f05c-a42f-4791-9743-71a6b413d6bd",
+      "user_id": "3",
+      "title": "杨贵妃霓裳羽衣舞",
+      "video_url": "/api/performance_audio/93cf4e3b-9651-4147-8cab-cd40e6e60eb4/wanx_93cf4e3b-9651-4147-8cab-cd40e6e60eb4.mp4",
+      "created_at": "2026-03-27T11:48:52Z"
+    },
+    {
+      "id": "a27edf6c-02c8-4aee-9dec-67fa17f12487",
+      "user_id": "3",
+      "title": "杨贵妃霓裳羽衣舞",
+      "video_url": "/api/performance_audio/5ea5f66b-1e7f-4f05-9190-f64993a42aac/wanx_5ea5f66b-1e7f-4f05-9190-f64993a42aac.mp4",
+      "created_at": "2026-03-27T12:13:41Z"
+    },
+    {
+      "id": "d6922b70-7c9f-4dab-97ec-9e42b75bc442",
+      "user_id": "3",
+      "title": "杨贵妃霓裳羽衣舞",
+      "video_url": "/api/performance_audio/5ea5f66b-1e7f-4f05-9190-f64993a42aac/wanx_5ea5f66b-1e7f-4f05-9190-f64993a42aac.mp4",
+      "created_at": "2026-03-27T12:13:55Z"
+    }
+  ]
+}
