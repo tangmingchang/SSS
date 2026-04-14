@@ -1,0 +1,94 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Jupyter Notebook
+.ipynb_checkpoints
+
+# Model files
+models/pretrained/
+*.pth
+*.ckpt
+*.safetensors
+*.bin
+
+# Data
+data/videos/
+data/outputs/
+backend/uploads/
+backend/outputs/
+*.mp4
+*.avi
+*.mov
+
+# Logs
+*.log
+logs/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary files
+*.tmp
+*.temp
+temp/
+
+# backend-teach
+backend-teach/node_modules/
+backend-teach/.env
+backend-teach/uploads/
+backend-teach/prisma/*.db
+backend-teach/prisma/*.db-journal
+
+# local secrets
+.env
+
+# Only deploy-related contents should be tracked
+/*
+!/.gitignore
+!/README.md
+!/package.json
+!/package-lock.json
+!/backend/
+!/backend/**
+!/frontend/
+!/frontend/**
+
+# re-ignore generated/cache/heavy files under tracked dirs
+backend/**/__pycache__/
+backend/src/**/__pycache__/
+backend/outputs/
+backend/uploads/
+backend/models/shadowplay/20.safetensors
