@@ -1,0 +1,227 @@
+.personal-library-page {
+  width: 80%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 32px;
+}
+
+.page-title {
+  font-size: 32px;
+  color: #FFD700;
+  margin-bottom: 8px;
+}
+
+.page-subtitle {
+  font-size: 14px;
+  color: #e0d3b8;
+}
+
+.btn-upload {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #ff7043, #ffca28);
+  color: #2b0904;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn-upload:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 140, 80, 0.4);
+}
+
+.library-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 24px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 8px;
+}
+
+.library-tab {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  background: transparent;
+  border: none;
+  color: #e0d3b8;
+  font-size: 14px;
+  cursor: pointer;
+  border-radius: 6px;
+  transition: all 0.3s;
+}
+
+.library-tab:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.library-tab.active {
+  background: rgba(255, 202, 40, 0.2);
+  color: #FFD700;
+  border-bottom: 2px solid #ffca28;
+}
+
+.tab-icon {
+  font-size: 18px;
+}
+
+/* 与公共资源库一致：网格与卡片尺寸 */
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+.resource-card {
+  background: radial-gradient(circle at top, rgba(255, 245, 230, 0.16), rgba(8, 3, 1, 0.96));
+  border-radius: 14px;
+  padding: 0;
+  border: 1px solid rgba(255, 240, 210, 0.18);
+  transition: all 0.3s;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+}
+
+.resource-card:hover {
+  border-color: rgba(255, 215, 140, 0.6);
+  background: radial-gradient(circle at top, rgba(255, 245, 230, 0.22), rgba(8, 3, 1, 0.98));
+  transform: translateY(-4px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.7);
+}
+
+.resource-card-poster {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resource-card-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.resource-card-poster-placeholder {
+  color: rgba(255, 215, 0, 0.4);
+  font-size: 48px;
+}
+
+.resource-card .resource-header {
+  margin-bottom: 8px;
+  padding: 12px 16px 8px;
+}
+
+.resource-card .resource-note {
+  padding: 0 16px 16px;
+  margin: 0;
+}
+
+.resource-header h4 {
+  font-size: 16px;
+  color: #FFD700;
+  margin-bottom: 6px;
+}
+
+.resource-note {
+  font-size: 12px;
+  color: #e0d3b8;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+}
+
+.empty-text {
+  font-size: 16px;
+  color: #e0d3b8;
+}
+
+.upload-dialog-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.upload-dialog {
+  background: radial-gradient(circle at top, rgba(255, 245, 230, 0.14), rgba(0, 0, 0, 0.9));
+  border-radius: 12px;
+  padding: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  min-width: 300px;
+}
+
+.upload-dialog h3 {
+  font-size: 18px;
+  color: #FFD700;
+  margin-bottom: 16px;
+}
+
+.upload-input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(4, 4, 8, 0.8);
+  color: #f6efe5;
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.upload-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: flex-end;
+}
+
+.btn-cancel,
+.btn-confirm {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-cancel {
+  background: rgba(255, 255, 255, 0.1);
+  color: #e7dac8;
+}
+
+.btn-confirm {
+  background: linear-gradient(135deg, #ff7043, #ffca28);
+  color: #2b0904;
+  font-weight: 600;
+}
+

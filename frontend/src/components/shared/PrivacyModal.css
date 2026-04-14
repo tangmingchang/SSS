@@ -1,0 +1,116 @@
+.privacy-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  padding: 16px;
+  box-sizing: border-box;
+}
+
+.privacy-modal {
+  background: linear-gradient(145deg, #2a1810 0%, #1a0f0a 100%);
+  border: 1px solid rgba(255, 215, 140, 0.25);
+  border-radius: 12px;
+  max-width: 560px;
+  width: 100%;
+  max-height: 85vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+}
+
+.privacy-modal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  flex-shrink: 0;
+}
+
+.privacy-modal-header h2 {
+  margin: 0;
+  font-size: 18px;
+  color: rgba(255, 230, 200, 0.95);
+  font-weight: 600;
+}
+
+.privacy-modal-close {
+  background: none;
+  border: none;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 4px;
+}
+
+.privacy-modal-close:hover {
+  color: #ffca28;
+}
+
+.privacy-modal-body {
+  padding: 16px 20px;
+  overflow-y: auto;
+  flex: 1;
+  min-height: 0;
+}
+
+.privacy-content {
+  margin: 0;
+  font-family: inherit;
+  font-size: 13px;
+  line-height: 1.65;
+  color: rgba(230, 220, 200, 0.9);
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.privacy-modal-footer {
+  padding: 12px 20px 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.privacy-agree-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  font-size: 13px;
+  color: rgba(230, 220, 200, 0.95);
+}
+
+.privacy-agree-label input[type="checkbox"] {
+  flex-shrink: 0;
+  margin: 0;
+  width: 16px;
+  height: 16px;
+  accent-color: #ffca28;
+}
+
+.privacy-agree-btn {
+  width: 100%;
+  padding: 10px 16px;
+  background: rgba(255, 202, 40, 0.2);
+  border: 1px solid rgba(255, 202, 40, 0.4);
+  color: #ffca28;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.privacy-agree-btn:hover:not(:disabled) {
+  background: rgba(255, 202, 40, 0.3);
+}
+
+.privacy-agree-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

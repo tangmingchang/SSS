@@ -1,0 +1,467 @@
+/* ===== 站点通用样式 ===== */
+.station-content {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* 布景站、演出站、交付站内容较多，允许内部下拉滚动 */
+.station-content.stage-station,
+.station-content.showtime-station,
+.station-content.export-station {
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+.station-content.stage-station::-webkit-scrollbar,
+.station-content.showtime-station::-webkit-scrollbar,
+.station-content.export-station::-webkit-scrollbar {
+  width: 6px;
+}
+.station-content.stage-station::-webkit-scrollbar-thumb,
+.station-content.showtime-station::-webkit-scrollbar-thumb,
+.station-content.export-station::-webkit-scrollbar-thumb {
+  background: rgba(255, 215, 140, 0.3);
+  border-radius: 3px;
+}
+
+.station-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #fcecd1;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.station-title span {
+  display: inline-block;
+}
+
+.station-desc {
+  font-size: 13px;
+  color: #a09080;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.stage-hint {
+  font-size: 12px;
+  color: #8a7a6a;
+  margin: 6px 0 0;
+  line-height: 1.4;
+}
+
+.station-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.station-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.station-empty {
+  padding: 40px;
+  text-align: center;
+  color: #a09080;
+  font-size: 14px;
+}
+
+.station-error {
+  padding: 12px;
+  background: rgba(255, 70, 70, 0.1);
+  border: 1px solid rgba(255, 70, 70, 0.3);
+  border-radius: 8px;
+  color: #ff6b6b;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 13px;
+  gap: 8px;
+}
+
+.station-error span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.station-error button {
+  background: rgba(255, 70, 70, 0.2);
+  border: 1px solid rgba(255, 70, 70, 0.5);
+  color: #ff6b6b;
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+/* ===== 按钮样式 ===== */
+.btn-primary {
+  background: linear-gradient(135deg, #ff7043, #ffca28);
+  color: #2b0904;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(255, 160, 90, 0.3);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(255, 160, 90, 0.5);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-secondary {
+  background: rgba(255, 215, 140, 0.1);
+  color: #fcecd1;
+  border: 1px solid rgba(255, 215, 140, 0.3);
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 215, 140, 0.2);
+  border-color: rgba(255, 215, 140, 0.5);
+}
+
+/* ===== 表单元素 ===== */
+.wb-select,
+.wb-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 215, 140, 0.3);
+  border-radius: 8px;
+  color: #fcecd1;
+  font-size: 14px;
+  font-family: inherit;
+}
+
+.wb-select:focus,
+.wb-textarea:focus {
+  outline: none;
+  border-color: rgba(255, 202, 40, 0.6);
+  box-shadow: 0 0 0 2px rgba(255, 202, 40, 0.2);
+}
+
+.wb-textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* ===== 特定站点样式 ===== */
+.script-preview-container {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 215, 140, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+  flex: 1;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.action-editor-container {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.action-editor-container .action-editor {
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.script-preview {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #fcecd1;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.script-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 40px;
+}
+
+.loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(255, 215, 140, 0.2);
+  border-top-color: #ffca28;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.loading-text {
+  color: #a09080;
+  font-size: 13px;
+}
+
+.stage-tabs,
+.source-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.stage-tabs button,
+.source-tabs button {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 215, 140, 0.3);
+  border-radius: 6px;
+  color: #fcecd1;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.stage-tabs button.active,
+.source-tabs button.active {
+  background: linear-gradient(135deg, #ff7043, #ffca28);
+  color: #2b0904;
+  border-color: rgba(255, 202, 40, 0.8);
+}
+
+.generated-preview {
+  margin-top: 12px;
+  text-align: center;
+}
+
+.generated-preview img {
+  max-width: 100%;
+  max-height: 200px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 215, 140, 0.3);
+}
+
+.generated-preview p {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #a09080;
+}
+
+.scene-analysis-section,
+.render-options-section {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 215, 140, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.render-options-section h4 {
+  margin: 0 0 12px 0;
+  font-size: 14px;
+  color: #fcecd1;
+}
+
+.option-group {
+  margin-bottom: 12px;
+}
+
+.option-group label {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #fcecd1;
+  font-size: 13px;
+}
+
+.option-group input[type="range"] {
+  flex: 1;
+}
+
+.option-group input[type="checkbox"] {
+  width: 18px;
+  height: 18px;
+}
+
+.analysis-result {
+  margin-top: 16px;
+}
+
+.analysis-result h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #fcecd1;
+}
+
+.analysis-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 12px;
+  color: #a09080;
+}
+
+/* 演出站：添加音乐、剧本台词 */
+.showtime-section {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 215, 140, 0.2);
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.showtime-section h4 {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  color: #fcecd1;
+}
+
+.showtime-music-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+.showtime-music-name {
+  font-size: 13px;
+  color: #e0d0b0;
+  max-width: 180px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.showtime-music-row audio {
+  width: 100%;
+  height: 36px;
+}
+
+.showtime-lines {
+  max-height: 220px;
+  overflow-y: auto;
+  padding-right: 8px;
+}
+
+.showtime-lines-block {
+  margin-bottom: 14px;
+}
+
+.showtime-lines-block:last-child {
+  margin-bottom: 0;
+}
+
+.showtime-lines-scene {
+  font-size: 12px;
+  color: #ffca28;
+  margin-bottom: 6px;
+}
+
+.showtime-lines-list {
+  margin: 0;
+  padding-left: 20px;
+  font-size: 13px;
+  color: #fcecd1;
+  line-height: 1.7;
+}
+
+.showtime-lines-list li {
+  margin-bottom: 4px;
+}
+
+.format-selector {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.format-selector button {
+  flex: 1;
+  padding: 8px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 215, 140, 0.3);
+  border-radius: 6px;
+  color: #fcecd1;
+  cursor: pointer;
+}
+
+.format-selector button.active {
+  background: linear-gradient(135deg, #ff7043, #ffca28);
+  color: #2b0904;
+}
+
+.export-progress {
+  margin-top: 16px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff7043, #ffca28);
+  transition: width 0.3s;
+}
+
+.progress-text {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #a09080;
+  text-align: center;
+}
+
+.export-result {
+  margin-top: 16px;
+  padding: 16px;
+  background: rgba(0, 255, 0, 0.1);
+  border: 1px solid rgba(0, 255, 0, 0.3);
+  border-radius: 8px;
+}
+
+.export-result h4 {
+  margin: 0 0 12px 0;
+  color: #4caf50;
+}
+
+.export-result a {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 16px;
+  background: rgba(0, 255, 0, 0.2);
+  border: 1px solid rgba(0, 255, 0, 0.5);
+  border-radius: 6px;
+  color: #4caf50;
+  text-decoration: none;
+}

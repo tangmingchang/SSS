@@ -1,0 +1,133 @@
+.asset-drawer {
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 215, 140, 0.3);
+  border-radius: 8px;
+  overflow: hidden;
+  transition: all 0.3s;
+}
+
+.drawer-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  background: transparent;
+  border: none;
+  color: #fcecd1;
+  cursor: pointer;
+  font-size: 13px;
+  transition: background 0.2s;
+}
+
+.drawer-toggle:hover {
+  background: rgba(255, 215, 140, 0.1);
+}
+
+.drawer-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.drawer-label {
+  flex: 1;
+  text-align: left;
+}
+
+.drawer-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.7;
+}
+
+.drawer-content {
+  flex: 1;
+  padding: 12px;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.asset-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.asset-tabs button {
+  flex: 1;
+  padding: 6px 12px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 215, 140, 0.3);
+  border-radius: 6px;
+  color: #fcecd1;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.asset-tabs button.active {
+  background: linear-gradient(135deg, #ff7043, #ffca28);
+  color: #2b0904;
+}
+
+.asset-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 8px;
+}
+
+.asset-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 215, 140, 0.2);
+  border-radius: 6px;
+  cursor: grab;
+  transition: all 0.2s;
+}
+
+.asset-item:hover {
+  border-color: rgba(255, 202, 40, 0.6);
+  transform: translateY(-2px);
+}
+
+.asset-item:active {
+  cursor: grabbing;
+}
+
+.asset-item img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+.asset-item-placeholder {
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 220, 160, 0.08);
+  border-radius: 4px;
+  font-size: 11px;
+  color: #a09080;
+}
+
+.asset-item span {
+  font-size: 11px;
+  color: #a09080;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 100%;
+}

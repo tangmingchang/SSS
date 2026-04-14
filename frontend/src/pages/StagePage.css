@@ -1,0 +1,35 @@
+.stage-page-wrap {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.stage-page-bar {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.5rem 1rem;
+  background: #f5f5f5;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.stage-page-bar button {
+  padding: 0.35rem 0.7rem;
+  cursor: pointer;
+}
+
+.stage-mode-label {
+  color: #666;
+  font-size: 0.9rem;
+  margin-left: auto;
+}
+
+.stage-page-main {
+  flex: 1;
+  min-height: 400px;
+}
+
+.stage-error {
+  color: #c00;
+  padding: 1rem;
+}

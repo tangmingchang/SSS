@@ -1,0 +1,553 @@
+# ============================================================================
+# 情绪-动作映射配置文件（科学版）
+# ============================================================================
+# 基于以下研究论文和数据集：
+# 1. "Kinematic dataset of actors expressing emotions" (s41597-020-00635-7)
+#    - 六种基本情绪（Ekman理论）：happiness, sadness, anger, fear, disgust, surprise + neutral
+#    - 1402个记录，72个解剖节点，情绪识别准确率：happiness(99.4%), sadness(95.7%), fear(97.1%), anger(91.7%)
+# 2. Motion-X Dataset: A Large-scale 3D Expressive Whole-body Human Motion Dataset
+#    - 15.6M个全身姿态，81.1K个动作片段，表达性动作与文本标签对齐
+# 3. "eHeritage of Shadow Puppetry" (eHeritage_of_Shadow_Puppetry_Creation_and_Manipulation.pdf)
+#    - 8种原子动作：jump(walk), bow, sit, kneel, point, swing, breathe, turn
+#    - 12自由度（DOF）控制模型，3个控制点（neck, left_hand, right_hand）
+# 4. "Chinese Shadow Puppetry with Kinect" (978-3-642-33863-2_35.pdf)
+#    - 简单动作：转头、伸臂、踢腿；复杂动作：后空翻、劈叉
+# ============================================================================
+
+# 情绪分类体系（基于Ekman的六种基本情绪理论 + 扩展）
+emotions:
+  # 基本情绪（基于Ekman理论，有科学验证）
+  basic_emotions:
+    - 快乐      # happiness (识别准确率: 99.4%)
+    - 悲伤      # sadness (识别准确率: 95.7%)
+    - 愤怒      # anger (识别准确率: 91.7%)
+    - 恐惧      # fear (识别准确率: 97.1%)
+    - 厌恶      # disgust (识别准确率: 90.6%)
+    - 惊讶      # surprise (识别准确率: 87.1%)
+    - 中性      # neutral (识别准确率: 92.0%)
+  
+  # 扩展情绪（基于Motion-X和表达性动作研究）
+  extended_emotions:
+    positive:
+      - 欢快      # 快乐的高激活状态
+      - 喜悦      # 快乐的温和状态
+      - 兴奋      # 高激活的积极情绪
+      - 满足      # 低激活的积极情绪
+    negative:
+      - 悲怆      # 悲伤的强烈状态
+      - 忧伤      # 悲伤的温和状态
+      - 失望      # 低激活的消极情绪
+    neutral:
+      - 平静      # 低激活的中性状态
+      - 紧张      # 高激活的中性状态
+      - 激动      # 高激活但情绪方向未定
+
+# 情绪维度理论（Valence-Arousal模型）
+emotion_dimensions:
+  valence:  # 效价：积极(positive) vs 消极(negative)
+    positive: [快乐, 欢快, 喜悦, 兴奋, 满足, 惊讶]
+    negative: [悲伤, 悲怆, 忧伤, 失望, 愤怒, 恐惧, 厌恶]
+    neutral: [中性, 平静, 紧张, 激动]
+  
+  arousal:  # 激活度：高激活(high) vs 低激活(low)
+    high: [愤怒, 恐惧, 兴奋, 惊讶, 紧张, 激动]
+    medium: [快乐, 欢快, 厌恶]
+    low: [悲伤, 悲怆, 忧伤, 失望, 满足, 平静, 中性]
+
+# 情绪到动作序列的映射（基于科学研究发现）
+emotion_to_actions:
+  # ========== 基本情绪 ==========
+  
+  快乐:
+    # 基于Kinematic dataset研究发现：上升动作、开放姿态、快速移动、跳跃性
+    description: "快乐情绪（happiness），识别准确率99.4%"
+    research_basis: "Kinematic dataset: 上升动作、开放姿态、快速移动、跳跃性"
+    valence: "positive"
+    arousal: "medium"
+    body_characteristics:
+      - "手臂上举"
+      - "身体前倾"
+      - "腿部活跃"
+      - "整体上升趋势"
+    actions:
+      - "挑线-快速上挑-中幅"      # 手臂上举
+      - "转签-快速旋转-中幅"      # 旋转庆祝
+      - "挑线-快速上挑-中幅"      # 重复上升
+      - "转签-快速旋转-中幅"      # 旋转庆祝
+      - "挑线-快速上挑-中幅"      # 结束上升
+    duration_ratio: 1.0            # 相对持续时间
+    intensity: 0.7                 # 动作强度（0-1）
+    
+  悲伤:
+    # 基于Kinematic dataset研究发现：下降动作、收缩姿态、缓慢移动、低能量
+    description: "悲伤情绪（sadness），识别准确率95.7%"
+    research_basis: "Kinematic dataset: 下降动作、收缩姿态、缓慢移动、低能量"
+    valence: "negative"
+    arousal: "low"
+    body_characteristics:
+      - "肩膀下沉"
+      - "头部低垂"
+      - "身体收缩"
+      - "整体下降趋势"
+    actions:
+      - "压签-缓慢下压-小幅"      # 肩膀下沉
+      - "转签-缓慢旋转-小幅"      # 缓慢转身
+      - "挑线-缓慢上挑-小幅"      # 轻微抬头
+      - "压签-保持下压-静止"      # 保持低姿态
+      - "转签-缓慢旋转-小幅"      # 缓慢旋转
+    duration_ratio: 1.2            # 悲伤动作通常更慢
+    intensity: 0.3                 # 低强度
+    
+  愤怒:
+    # 基于Kinematic dataset研究发现：快速大幅动作、紧张姿态、攻击性、高能量
+    description: "愤怒情绪（anger），识别准确率91.7%"
+    research_basis: "Kinematic dataset: 快速大幅动作、紧张姿态、攻击性、高能量"
+    valence: "negative"
+    arousal: "high"
+    body_characteristics:
+      - "手臂快速挥舞"
+      - "身体前倾"
+      - "脚步重"
+      - "整体大幅快速"
+    actions:
+      - "挑线-快速上挑-大幅"      # 快速上举
+      - "压签-快速下压-大幅"      # 快速下压
+      - "转签-快速旋转-大幅"      # 快速旋转
+      - "挑线-快速上挑-大幅"      # 重复攻击
+      - "压签-快速下压-大幅"      # 结束动作
+    duration_ratio: 0.8            # 愤怒动作更快
+    intensity: 0.9                 # 高强度
+    
+  恐惧:
+    # 基于Kinematic dataset研究发现：快速收缩、防御姿态、不稳定、后退倾向
+    description: "恐惧情绪（fear），识别准确率97.1%"
+    research_basis: "Kinematic dataset: 快速收缩、防御姿态、不稳定、后退倾向"
+    valence: "negative"
+    arousal: "high"
+    body_characteristics:
+      - "手臂护身"
+      - "身体后缩"
+      - "脚步快速"
+      - "防御性后退"
+    actions:
+      - "压签-快速下压-中幅"      # 快速收缩
+      - "转签-快速旋转-中幅"      # 快速转身
+      - "挑线-快速上挑-中幅"      # 防御性上举
+      - "压签-快速下压-中幅"      # 再次收缩
+    duration_ratio: 0.9            # 恐惧动作较快
+    intensity: 0.6                 # 中高强度
+    
+  厌恶:
+    # 基于Kinematic dataset研究发现：回避动作、收缩姿态、后退、中低能量
+    description: "厌恶情绪（disgust），识别准确率90.6%"
+    research_basis: "Kinematic dataset: 回避动作、收缩姿态、后退、中低能量"
+    valence: "negative"
+    arousal: "medium"
+    body_characteristics:
+      - "头部后仰"
+      - "身体后缩"
+      - "手臂推开"
+      - "回避性动作"
+    actions:
+      - "压签-缓慢下压-中幅"      # 身体后缩
+      - "转签-缓慢旋转-中幅"      # 转身回避
+      - "挑线-缓慢上挑-中幅"      # 推开动作
+      - "压签-缓慢下压-中幅"      # 继续后退
+    duration_ratio: 1.0
+    intensity: 0.5                 # 中等强度
+    
+  惊讶:
+    # 基于Kinematic dataset研究发现：突然动作、开放姿态、快速反应、高能量
+    description: "惊讶情绪（surprise），识别准确率87.1%"
+    research_basis: "Kinematic dataset: 突然动作、开放姿态、快速反应、高能量"
+    valence: "neutral"             # 惊讶可以是积极或消极
+    arousal: "high"
+    body_characteristics:
+      - "手臂上举"
+      - "身体后仰"
+      - "眼睛睁大"
+      - "突然反应"
+    actions:
+      - "挑线-快速上挑-大幅"      # 突然上举
+      - "保持-保持姿势-静止"      # 短暂停顿
+      - "转签-快速旋转-中幅"      # 快速反应
+      - "挑线-快速上挑-中幅"      # 恢复
+    duration_ratio: 0.7            # 惊讶动作短暂
+    intensity: 0.8                 # 高强度
+    
+  中性:
+    # 基于Kinematic dataset研究发现：平静、稳定、低激活
+    description: "中性情绪（neutral），识别准确率92.0%"
+    research_basis: "Kinematic dataset: 平静、稳定、低激活"
+    valence: "neutral"
+    arousal: "low"
+    body_characteristics:
+      - "自然姿态"
+      - "稳定动作"
+      - "低能量"
+    actions:
+      - "保持-保持姿势-静止"      # 保持自然
+      - "转签-缓慢旋转-小幅"      # 轻微调整
+      - "保持-保持姿势-静止"      # 继续保持
+    duration_ratio: 1.5            # 中性动作持续时间长
+    intensity: 0.2                 # 低强度
+    
+  # ========== 扩展情绪 ==========
+  
+  欢快:
+    description: "快乐的高激活状态"
+    valence: "positive"
+    arousal: "high"
+    base_emotion: "快乐"
+    actions:
+      - "挑线-快速上挑-大幅"      # 更大幅度的上升
+      - "转签-快速旋转-大幅"      # 更大幅度的旋转
+      - "挑线-快速上挑-大幅"
+      - "转签-快速旋转-大幅"
+      - "挑线-快速上挑-大幅"
+    duration_ratio: 0.9
+    intensity: 0.8
+    
+  喜悦:
+    description: "快乐的温和状态"
+    valence: "positive"
+    arousal: "medium"
+    base_emotion: "快乐"
+    actions:
+      - "挑线-快速上挑-中幅"
+      - "转签-快速旋转-中幅"
+      - "挑线-快速上挑-中幅"
+      - "转签-快速旋转-中幅"
+    duration_ratio: 1.0
+    intensity: 0.6
+    
+  兴奋:
+    description: "高激活的积极情绪"
+    valence: "positive"
+    arousal: "high"
+    base_emotion: "快乐"
+    actions:
+      - "挑线-快速上挑-大幅"
+      - "转签-快速旋转-大幅"
+      - "挑线-快速上挑-大幅"
+      - "转签-快速旋转-大幅"
+      - "挑线-快速上挑-大幅"
+    duration_ratio: 0.8
+    intensity: 0.9
+    
+  满足:
+    description: "低激活的积极情绪"
+    valence: "positive"
+    arousal: "low"
+    base_emotion: "快乐"
+    actions:
+      - "压签-缓慢下压-小幅"
+      - "保持-保持姿势-静止"
+      - "转签-缓慢旋转-小幅"
+    duration_ratio: 1.3
+    intensity: 0.3
+    
+  悲怆:
+    description: "悲伤的强烈状态"
+    valence: "negative"
+    arousal: "medium"
+    base_emotion: "悲伤"
+    actions:
+      - "压签-缓慢下压-小幅"
+      - "转签-缓慢旋转-小幅"
+      - "挑线-缓慢上挑-小幅"
+      - "压签-保持下压-静止"
+      - "转签-缓慢旋转-小幅"
+      - "压签-缓慢下压-小幅"      # 更深的悲伤
+    duration_ratio: 1.4
+    intensity: 0.4
+    
+  忧伤:
+    description: "悲伤的温和状态"
+    valence: "negative"
+    arousal: "low"
+    base_emotion: "悲伤"
+    actions:
+      - "压签-缓慢下压-小幅"
+      - "转签-缓慢旋转-小幅"
+      - "挑线-缓慢上挑-小幅"
+      - "压签-保持下压-静止"
+    duration_ratio: 1.2
+    intensity: 0.3
+    
+  失望:
+    description: "低激活的消极情绪"
+    valence: "negative"
+    arousal: "low"
+    base_emotion: "悲伤"
+    actions:
+      - "压签-缓慢下压-小幅"
+      - "保持-保持姿势-静止"
+      - "压签-缓慢下压-小幅"
+    duration_ratio: 1.5
+    intensity: 0.2
+    
+  平静:
+    description: "低激活的中性状态"
+    valence: "neutral"
+    arousal: "low"
+    base_emotion: "中性"
+    actions:
+      - "压签-缓慢下压-小幅"
+      - "保持-保持姿势-静止"
+      - "转签-缓慢旋转-小幅"
+      - "压签-缓慢下压-小幅"
+    duration_ratio: 1.5
+    intensity: 0.2
+    
+  紧张:
+    description: "高激活的中性状态"
+    valence: "neutral"
+    arousal: "high"
+    base_emotion: "恐惧"
+    actions:
+      - "挑线-快速上挑-中幅"
+      - "压签-快速下压-中幅"
+      - "转签-快速旋转-中幅"
+      - "挑线-快速上挑-中幅"
+    duration_ratio: 0.9
+    intensity: 0.6
+    
+  激动:
+    description: "高激活但情绪方向未定"
+    valence: "neutral"
+    arousal: "high"
+    base_emotion: "惊讶"
+    actions:
+      - "挑线-快速上挑-中幅"
+      - "转签-快速旋转-中幅"
+      - "挑线-快速上挑-中幅"
+      - "转签-快速旋转-中幅"
+    duration_ratio: 0.9
+    intensity: 0.7
+
+# 皮影戏原子动作映射（基于eHeritage论文）
+shadow_puppetry_atomic_actions:
+  jump:  # 在皮影戏中代表walk
+    description: "整个身体向前移动一定距离，在皮影戏中代表行走"
+    piying_technique: "挑线-左腿上抬-中幅 → 压签-左腿下压-中幅 → 挑线-右腿上抬-中幅 → 压签-右腿下压-中幅"
+    control_points: ["neck", "left_hand", "right_hand"]
+    
+  bow:
+    description: "低头或上身降低作为社交手势"
+    piying_technique: "压签-身体前倾-大幅 → 保持-保持姿势-静止 → 保持-保持姿势-静止 → 挑线-身体恢复-中幅"
+    control_points: ["neck"]
+    
+  sit:
+    description: "坐在场景中的椅子上"
+    piying_technique: "压签-身体下压-中幅 → 保持-保持姿势-静止"
+    control_points: ["neck"]
+    
+  kneel:
+    description: "跪在地上"
+    piying_technique: "压签-身体下压-大幅 → 保持-保持姿势-静止"
+    control_points: ["neck"]
+    
+  point:
+    description: "说话时频繁出现的手势，表示皮影在说话"
+    piying_technique: "挑线-手臂上抬-中幅 → 转签-手臂旋转-中幅 → 压签-手臂下压-中幅"
+    control_points: ["left_hand", "right_hand"]
+    
+  swing:
+    description: "手的前后摆动"
+    piying_technique: "挑线-手臂上抬-中幅 → 转签-手臂旋转-中幅 → 压签-手臂下压-中幅 → 挑线-手臂上抬-中幅"
+    control_points: ["left_hand", "right_hand"]
+    
+  breathe:
+    description: "上身的起伏，在皮影戏中表示皮影在说话"
+    piying_technique: "压签-身体前倾-小幅 → 挑线-身体恢复-小幅 → 压签-身体前倾-小幅"
+    control_points: ["neck"]
+    
+  turn:
+    description: "绕场景y轴翻转皮影，改变其面向方向"
+    piying_technique: "转签-快速旋转-大幅"
+    control_points: ["neck"]
+
+# 动作技法说明（皮影戏传统技法）
+action_techniques:
+  挑线:
+    description: "上挑动作，用于上升、跳跃、攻击等"
+    direction: "up"
+    typical_emotions: ["快乐", "欢快", "兴奋", "愤怒", "激动", "惊讶"]
+    body_parts: ["手臂", "腿部", "身体"]
+    
+  压签:
+    description: "下压动作，用于下降、防御、悲伤等"
+    direction: "down"
+    typical_emotions: ["悲伤", "悲怆", "忧伤", "失望", "平静", "恐惧"]
+    body_parts: ["手臂", "腿部", "身体"]
+    
+  转签:
+    description: "旋转动作，用于旋转、转身、庆祝等"
+    direction: "rotate"
+    typical_emotions: ["快乐", "欢快", "兴奋", "愤怒", "激动", "惊讶"]
+    body_parts: ["身体", "手臂"]
+    
+  保持:
+    description: "保持姿势，静止状态"
+    direction: "none"
+    typical_emotions: ["平静", "满足", "失望", "中性"]
+    body_parts: ["全身"]
+
+# 速度和幅度映射（基于皮影戏表演特点）
+speed_mapping:
+  快速:
+    value: "very_fast"
+    description: "快速动作，用于高激活情绪"
+    typical_emotions: ["愤怒", "恐惧", "兴奋", "惊讶", "紧张", "激动"]
+    frame_duration: 0.03  # 秒/帧（30fps）
+    
+  中速:
+    value: "fast"
+    description: "中等速度动作"
+    typical_emotions: ["快乐", "欢快", "厌恶", "喜悦"]
+    frame_duration: 0.05
+    
+  缓慢:
+    value: "slow"
+    description: "缓慢动作，用于低激活情绪"
+    typical_emotions: ["悲伤", "悲怆", "忧伤", "失望", "平静", "满足"]
+    frame_duration: 0.08
+    
+  保持:
+    value: "still"
+    description: "静止状态"
+    typical_emotions: ["平静", "满足", "失望", "中性"]
+    frame_duration: 0.1
+
+amplitude_mapping:
+  大幅:
+    value: 0.9
+    description: "大幅度动作，用于强烈情绪"
+    typical_emotions: ["愤怒", "兴奋", "惊讶", "欢快"]
+    joint_angle_range: [60, 90]  # 关节角度范围（度）
+    
+  中幅:
+    value: 0.6
+    description: "中等幅度动作"
+    typical_emotions: ["快乐", "恐惧", "紧张", "激动", "厌恶"]
+    joint_angle_range: [30, 60]
+    
+  小幅:
+    value: 0.3
+    description: "小幅度动作，用于温和情绪"
+    typical_emotions: ["悲伤", "悲怆", "忧伤", "失望", "平静", "满足"]
+    joint_angle_range: [10, 30]
+    
+  静止:
+    value: 0.0
+    description: "无动作"
+    typical_emotions: ["平静", "满足", "失望", "中性"]
+    joint_angle_range: [0, 5]
+
+# 皮影戏控制模型（基于eHeritage论文）
+puppetry_control_model:
+  parts:
+    - "head"           # 头部
+    - "upper_body"     # 上身
+    - "left_arm"       # 左臂
+    - "right_arm"      # 右臂
+    - "left_hand"      # 左手
+    - "right_hand"     # 右手
+    - "lower_body"     # 下身
+    - "front_foot"     # 前脚
+    - "rear_foot"      # 后脚
+  
+  joints:
+    - "left_shoulder"   # 左肩
+    - "right_shoulder"  # 右肩
+    - "left_elbow"      # 左肘
+    - "right_elbow"     # 右肘
+    - "waist"           # 腰部（有额外的垂直轴移动）
+    - "front_knee"      # 前膝
+    - "rear_knee"       # 后膝
+  
+  degrees_of_freedom: 12
+  control_points:
+    - name: "neck"
+      description: "主要控制点，连接头部和上身"
+      dof: ["head_x", "head_y", "head_rotation"]
+    - name: "left_hand"
+      description: "左手控制点"
+      dof: ["left_shoulder_rotation", "left_elbow_rotation"]
+    - name: "right_hand"
+      description: "右手控制点"
+      dof: ["right_shoulder_rotation", "right_elbow_rotation"]
+  
+  motion_characteristics:
+    - "二维平面运动"
+    - "受重力影响"
+    - "三个控制点驱动"
+    - "传统表演风格"
+    - "12自由度控制"
+
+# 数据来源和引用
+data_sources:
+  - name: "Kinematic dataset of actors expressing emotions"
+    paper: "s41597-020-00635-7"
+    authors: "Mingming Zhang et al."
+    journal: "Scientific Data (2020)"
+    description: "包含1402个记录的人体运动数据集，六种基本情绪（happiness, sadness, anger, fear, disgust, surprise）+ neutral"
+    key_findings:
+      - "72个解剖节点的位置和旋转数据"
+      - "情绪识别准确率：happiness(99.4%), sadness(95.7%), fear(97.1%), anger(91.7%), disgust(90.6%), surprise(87.1%), neutral(92.0%)"
+      - "包含不同日常场景下的情绪表达"
+      - "基于Ekman的六种基本情绪理论"
+    url: "https://doi.org/10.1038/s41597-020-00635-7"
+    
+  - name: "Motion-X Dataset"
+    description: "A Large-scale 3D Expressive Whole-body Human Motion Dataset"
+    url: "https://motion-x-dataset.github.io/"
+    key_findings:
+      - "15.6M个全身姿态，81.1K个动作片段"
+      - "强调表达性动作与文本标签的对齐"
+      - "支持动作文本对齐、检索与生成预训练"
+    
+  - name: "eHeritage of Shadow Puppetry"
+    paper: "eHeritage_of_Shadow_Puppetry_Creation_and_Manipulation.pdf"
+    authors: "Min Lin, Zhenzhen Hu, Si Liu, Meng Wang, Richang Hong, Shuicheng Yan"
+    conference: "MM'13"
+    description: "皮影戏电子遗产保护研究"
+    key_findings:
+      - "8种原子动作：jump(walk), bow, sit, kneel, point, swing, breathe, turn"
+      - "12自由度（DOF）控制模型"
+      - "3个控制点：neck, left_hand, right_hand"
+      - "9个部分组成的皮影结构"
+      - "基于5个真实皮影戏视频的分析"
+    
+  - name: "Chinese Shadow Puppetry with Kinect"
+    paper: "978-3-642-33863-2_35.pdf"
+    authors: "Hui Zhang, Yuhao Song, Zhuo Chen, Ji Cai, Ke Lu"
+    conference: "ECCV 2012"
+    description: "使用Kinect控制中国皮影戏"
+    key_findings:
+      - "分析了《武松打虎》中的动作"
+      - "定义了简单动作（转头、伸臂、踢腿）和复杂动作（后空翻、劈叉）"
+      - "提供了手势映射表"
+
+# 使用说明和最佳实践
+usage_guidelines:
+  - "此映射基于科学研究论文和数据集，具有科学依据"
+  - "情绪标签应该是真正的情绪词（如快乐、悲伤、愤怒），不是动作词（如行走、挥手）"
+  - "动作序列应该反映情绪的典型表达方式，符合皮影戏的表演特点"
+  - "可以根据实际皮影戏表演特点进行微调，但应保持科学依据"
+  - "建议优先使用基本情绪（快乐、悲伤、愤怒、恐惧、厌恶、惊讶、中性）"
+  - "扩展情绪可以作为基本情绪的变体使用"
+
+# 验证和测试建议
+validation:
+  - "建议使用Kinematic dataset中的测试数据进行验证"
+  - "可以参考Motion-X数据集中的表达性动作进行对比"
+  - "应该与实际皮影戏表演进行对比验证"
+  - "情绪识别准确率可以作为参考标准"
+
+# 版本信息
+version: "2.0.0"
+last_updated: "2025-02-09"
+author: "Based on scientific research papers"
+license: "For academic research use"

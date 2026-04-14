@@ -1,0 +1,87 @@
+/* ===== 站点切换条 ===== */
+.station-stepper {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+  flex: 1;
+}
+
+.station-step {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.3);
+  color: #fcecd1;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+}
+
+.station-step:hover:not(.disabled) {
+  background: rgba(255, 215, 140, 0.2);
+  border-color: rgba(255, 215, 140, 0.5);
+  transform: translateY(-1px);
+}
+
+.station-step.active {
+  background: linear-gradient(135deg, #ff7043, #ffca28);
+  color: #2b0904;
+  border-color: rgba(255, 202, 40, 0.8);
+  box-shadow: 0 4px 12px rgba(255, 160, 90, 0.4);
+  font-weight: 600;
+}
+
+.station-step.completed {
+  border-color: rgba(255, 202, 40, 0.6);
+}
+
+.station-step.completed .station-check {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(255, 202, 40, 0.3);
+  margin-left: 2px;
+  box-shadow: 0 0 8px rgba(255, 202, 40, 0.6);
+}
+
+.station-step.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.station-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.station-label {
+  font-size: 12px;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 767px) {
+  .station-stepper {
+    gap: 4px;
+  }
+  
+  .station-step {
+    padding: 4px 8px;
+    font-size: 11px;
+  }
+  
+  .station-icon {
+    font-size: 14px;
+  }
+  
+  .station-label {
+    display: none; /* 移动端只显示图标 */
+  }
+}

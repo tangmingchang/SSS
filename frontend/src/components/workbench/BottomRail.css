@@ -1,0 +1,60 @@
+/* ===== 工具区域（现在在右侧） ===== */
+.bottom-rail {
+  height: 100%;
+  width: 100%;
+  background: transparent;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+}
+
+.bottom-rail-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 12px 16px;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* 工具区域内的三列：上下排列，每列占满宽度 */
+.bottom-rail-content > * {
+  flex-shrink: 0;
+  width: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+/* 资源仓：40% */
+.bottom-rail-content > :nth-child(1) {
+  flex: 2;
+  min-height: 0;
+}
+
+/* 摄像头：60% */
+.bottom-rail-content > :nth-child(2) {
+  flex: 3;
+  min-height: 0;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 1023px) {
+  .bottom-rail-content {
+    flex-wrap: wrap;
+    padding: 8px 12px;
+  }
+}
+
+@media (max-width: 767px) {
+  .bottom-rail {
+    position: relative;
+  }
+  
+  .bottom-rail-content {
+    padding: 8px;
+    gap: 8px;
+  }
+}

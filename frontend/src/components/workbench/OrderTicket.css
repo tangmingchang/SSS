@@ -1,0 +1,139 @@
+/* ===== 订单票据 ===== */
+.order-ticket {
+  background: rgba(20, 6, 3, 0.95);
+  border: 1px solid rgba(255, 215, 140, 0.5);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.6);
+  transition: all 0.3s ease;
+  min-width: 200px;
+  max-width: 400px;
+}
+
+.order-ticket.expanded {
+  max-width: 500px;
+}
+
+.order-ticket.pinned {
+  position: fixed;
+  top: 80px;
+  right: 20px;
+  z-index: 1000;
+}
+
+.ticket-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 14px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.ticket-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.ticket-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ticket-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #fcecd1;
+  white-space: nowrap;
+}
+
+.ticket-theme {
+  font-size: 11px;
+  color: #a09080;
+  margin-left: 8px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ticket-actions {
+  display: flex;
+  gap: 4px;
+}
+
+.ticket-pin-btn,
+.ticket-expand-btn {
+  background: transparent;
+  border: none;
+  color: #fcecd1;
+  cursor: pointer;
+  padding: 4px;
+  font-size: 14px;
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.ticket-pin-btn:hover,
+.ticket-expand-btn:hover {
+  opacity: 1;
+}
+
+.ticket-content {
+  padding: 12px 14px;
+  border-top: 1px solid rgba(255, 215, 140, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ticket-field {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+}
+
+.field-label {
+  color: #a09080;
+  min-width: 70px;
+}
+
+.field-value {
+  color: #fcecd1;
+  flex: 1;
+  padding: 2px 8px;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.field-value.highlight {
+  background: rgba(255, 202, 40, 0.2);
+  border: 1px solid rgba(255, 202, 40, 0.5);
+  color: #ffca28;
+}
+
+.field-value.error {
+  background: rgba(255, 70, 70, 0.2);
+  border: 1px solid rgba(255, 70, 70, 0.5);
+  color: #ff6b6b;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 767px) {
+  .order-ticket {
+    max-width: 100%;
+  }
+  
+  .order-ticket.pinned {
+    position: relative;
+    top: auto;
+    right: auto;
+  }
+  
+  .ticket-theme {
+    display: none;
+  }
+}

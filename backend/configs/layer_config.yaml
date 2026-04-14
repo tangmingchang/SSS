@@ -1,0 +1,151 @@
+# 皮影图层配置
+
+# 图层层级定义（从后到前）
+layer_hierarchy:
+  - name: "背景"
+    order: 0
+    optional: true
+
+  - name: "main"
+    order: 0
+    optional: true
+    joint: "Root"
+
+  - name: "下身"
+    order: 1
+    optional: false
+  
+  - name: "左腿"
+    order: 2
+    optional: true
+    parent: "下身"
+    joint: "left_hip"
+  
+  - name: "右腿"
+    order: 3
+    optional: true
+    parent: "下身"
+    joint: "right_hip"
+  
+  - name: "上身"
+    order: 4
+    optional: false
+  
+  - name: "左手-下"
+    order: 5
+    optional: true
+    parent: "上身"
+    joint: "left_shoulder"
+  
+  - name: "右手-下"
+    order: 6
+    optional: true
+    parent: "上身"
+    joint: "right_shoulder"
+  
+  - name: "左手-上"
+    order: 7
+    optional: true
+    parent: "左手-下"
+    joint: "left_elbow"
+  
+  - name: "右手-上"
+    order: 8
+    optional: true
+    parent: "右手-下"
+    joint: "right_elbow"
+  
+  - name: "头"
+    order: 9
+    optional: false
+    parent: "上身"
+    joint: "neck"
+
+# 关键点映射（COCO格式）
+keypoint_mapping:
+  nose: 0
+  left_eye: 1
+  right_eye: 2
+  left_ear: 3
+  right_ear: 4
+  left_shoulder: 5
+  right_shoulder: 6
+  left_elbow: 7
+  right_elbow: 8
+  left_wrist: 9
+  right_wrist: 10
+  left_hip: 11
+  right_hip: 12
+  left_knee: 13
+  right_knee: 14
+  left_ankle: 15
+  right_ankle: 16
+  neck: 17  # 计算得出：(left_shoulder + right_shoulder) / 2
+
+# 图层文件命名规则
+naming_patterns:
+  - pattern: "头|head|头部"
+    layer_name: "头"
+  - pattern: "上身|body|torso|躯干"
+    layer_name: "上身"
+  - pattern: "下身|lower_body|下半身"
+    layer_name: "下身"
+  - pattern: "左手-上|left_hand_upper|left_arm_upper"
+    layer_name: "左手-上"
+  - pattern: "左手-下|left_hand_lower|left_arm_lower"
+    layer_name: "左手-下"
+  - pattern: "左手|left_hand|left_arm"
+    layer_name: "左手"
+  - pattern: "右手-上|right_hand_upper|right_arm_upper"
+    layer_name: "右手-上"
+  - pattern: "右手-下|right_hand_lower|right_arm_lower"
+    layer_name: "右手-下"
+  - pattern: "右手|right_hand|right_arm"
+    layer_name: "右手"
+  - pattern: "左腿|left_leg|left_foot"
+    layer_name: "左腿"
+  - pattern: "右腿|right_leg|right_foot"
+    layer_name: "右腿"
+  - pattern: "main|1|图层\\s*1"
+    layer_name: "main"  # 主图层
+  - pattern: "图层\\s*\\d+|layer\\s*\\d+|\\d+"
+    layer_name: "图层"  # 需要根据顺序推断
+
+# 默认图层尺寸
+default_layer_size:
+  width: 512
+  height: 768
+
+# 图层锚点（相对于图层中心的偏移，归一化坐标）
+layer_anchors:
+  头:
+    x: 0.0
+    y: -0.3
+  上身:
+    x: 0.0
+    y: 0.0
+  下身:
+    x: 0.0
+    y: 0.2
+  左手-下:
+    x: -0.15
+    y: -0.1
+  右手-下:
+    x: 0.15
+    y: -0.1
+  左手-上:
+    x: -0.25
+    y: -0.2
+  右手-上:
+    x: 0.25
+    y: -0.2
+  左腿:
+    x: -0.08
+    y: 0.35
+  右腿:
+    x: 0.08
+    y: 0.35
+  main:
+    x: 0.0
+    y: 0.0
+
