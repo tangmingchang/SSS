@@ -1,0 +1,80 @@
+# Core dependencies
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0,<2.0.0  # 限制为 1.x 以兼容 VIBE
+opencv-python>=4.8.0,<4.12.0  # 使用兼容 numpy 1.x 的版本
+# opencv-contrib-python>=4.8.0  # 注释掉，避免与 VIBE 的 numpy 1.x 冲突
+pillow>=10.0.0
+scipy>=1.11.0
+scikit-image>=0.21.0
+scikit-learn>=1.0.0
+tqdm>=4.65.0
+flask>=2.3.0
+werkzeug>=2.3.0
+
+# Deep learning frameworks
+diffusers>=0.21.0
+transformers>=4.30.0
+accelerate>=0.20.0
+einops>=0.7.0
+controlnet-aux>=0.0.7
+xformers>=0.0.20
+peft>=0.5.0
+
+# Configuration and tools
+omegaconf>=2.3.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+pyyaml>=6.0
+
+# Video and image processing
+imageio>=2.31.0
+imageio-ffmpeg>=0.4.9
+decord>=0.6.0
+
+# Web interface
+gradio>=3.40.0
+flask-cors>=4.0.0
+
+# Pose detection
+mediapipe>=0.10.0
+
+# Others
+pyarrow>=12.0.0
+onnxruntime>=1.15.0
+
+# 文生图：火山引擎 MaaS（AK/SK + endpoint_id）可选
+volcengine>=1.0.0
+
+# 剧本生成：通义千问（优先）、OpenAI 可选
+dashscope>=1.14.0
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+# 用户认证
+PyJWT>=2.8.0
+werkzeug>=2.3.0
+
+# 皮影文生图 (ModelScope shadowplay)
+modelscope>=1.9.0
+addict>=0.2.3  # ModelScope 依赖
+oss2>=2.18.0  # ModelScope msdatasets 依赖
+datasets==2.14.0  # ModelScope 依赖，2.15+ 有 API 变更
+
+# 文生图人物抠图（透明背景）
+rembg[cpu]>=2.0.0
+
+# 图生视频外部服务 HTTP 调用
+requests>=2.31.0
+
+# 演出流水线：念白 TTS + 音频合成
+ChatTTS>=0.1.0
+pydub>=0.25.0
+torchaudio>=2.0.0
+# 备用 TTS（ChatTTS 模型下载失败时使用，无需本地模型）
+edge-tts>=6.1.0
+
+# 阶段二（可选）：MusicGen 戏曲伴奏，无上传音乐时自动生成
+# 需设置 ENABLE_MUSICGEN=1。显存建议 16GB 以下用 musicgen-small
+# pip install audiocraft
+# 或：git clone https://github.com/facebookresearch/audiocraft && cd audiocraft && pip install -e .

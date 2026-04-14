@@ -1,0 +1,29 @@
+# 推理配置
+
+unet_additional_kwargs:
+  use_motion_module: true
+  motion_module_resolutions: [1, 2, 4, 8]
+  unet_use_cross_frame_attention: false
+  unet_use_temporal_attention: true
+
+noise_scheduler_kwargs:
+  num_train_timesteps: 1000
+  beta_start: 0.00085
+  beta_end: 0.012
+  beta_schedule: "scaled_linear"
+  prediction_type: "epsilon"
+  num_inference_steps: 25
+
+# 控制网络配置
+controlnet_config:
+  enabled: true
+  controlnet_conditioning_scale: 1.0
+  control_guidance_start: 0.0
+  control_guidance_end: 1.0
+
+# 视频生成配置
+video_config:
+  fps: 8
+  loop: false
+  smooth_transition: true
+

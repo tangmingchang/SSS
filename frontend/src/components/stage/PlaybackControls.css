@@ -1,0 +1,118 @@
+.playback-controls {
+  flex-shrink: 0;
+  background: rgba(20, 6, 3, 0.95);
+  border-top: 1px solid rgba(255, 215, 140, 0.3);
+  padding: 12px 16px;
+}
+
+.controls-main {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.play-pause-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff7043, #ffca28);
+  border: none;
+  color: #2b0904;
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(255, 160, 90, 0.3);
+}
+
+.play-pause-btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 160, 90, 0.5);
+}
+
+.time-display {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  color: #fcecd1;
+  font-size: 13px;
+  font-variant-numeric: tabular-nums;
+  min-width: 80px;
+}
+
+.progress-slider {
+  flex: 1;
+  height: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.progress-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff7043, #ffca28);
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.progress-slider::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff7043, #ffca28);
+  cursor: pointer;
+  border: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.speed-control {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #fcecd1;
+  font-size: 12px;
+}
+
+.speed-control input[type="range"] {
+  width: 80px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  outline: none;
+  -webkit-appearance: none;
+}
+
+.speed-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #ffca28;
+  cursor: pointer;
+}
+
+/* ===== 响应式 ===== */
+@media (max-width: 767px) {
+  .controls-main {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  
+  .speed-control {
+    order: -1;
+    width: 100%;
+    justify-content: space-between;
+  }
+  
+  .speed-control input[type="range"] {
+    flex: 1;
+  }
+}

@@ -1,0 +1,606 @@
+/* ===== 工作台整体容器 ===== */
+.workbench {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 16px 24px;
+}
+
+/* 三列布局：中间偏宽，左右稍窄 */
+.workbench-grid {
+  display: grid;
+  grid-template-columns: minmax(260px, 1.3fr) minmax(0, 2fr) minmax(260px, 1.4fr);
+  gap: 16px;
+  align-items: stretch; /* 三列高度保持一致 */
+}
+
+.workbench-col {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+@media (max-width: 1100px) {
+  .workbench-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ===== 顶部步骤条：自动换行，不再超出屏幕 ===== */
+.step-header {
+  margin-bottom: 16px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  background: radial-gradient(circle at top, rgba(255, 215, 140, 0.2), rgba(20, 6, 3, 0.95));
+  border: 1px solid rgba(255, 215, 140, 0.5);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-wrap: wrap;        /* 关键：自动换行 */
+  gap: 6px;
+}
+
+/* 单个步骤 pill */
+.step-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  border-radius: 999px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(0, 0, 0, 0.3);
+  color: #fcecd1;
+  font-size: 12px;
+  opacity: 0.8;
+  transition:
+    background 0.18s ease,
+    transform 0.08s ease,
+    box-shadow 0.18s ease,
+    opacity 0.18s ease;
+}
+
+.step-item:hover {
+  opacity: 1;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+.step-item.active {
+  border-color: rgba(255, 215, 140, 0.8);
+}
+
+.step-item.current {
+  background: linear-gradient(135deg, #ff7043, #ffca28);
+  color: #2b0904;
+  box-shadow: 0 6px 14px rgba(255, 160, 90, 0.7);
+}
+
+/* 步骤数字 */
+.step-number {
+  width: 18px;
+  height: 18px;
+  border-radius: 999px;
+  background: radial-gradient(circle, #fbe7c1, #7b2c16);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 600;
+  color: #2b0904;
+}
+
+.step-item.active .step-number {
+  background: radial-gradient(circle, #ffca28, #c62828);
+  color: #2b0904;
+}
+
+/* 步骤文字 */
+.step-label {
+  font-size: 11px;
+  white-space: nowrap;
+}
+
+/* ===== 通用卡片：羊皮卷 / 画轴感 ===== */
+.wb-card {
+  position: relative;
+  background:
+    radial-gradient(circle at top, rgba(255, 245, 230, 0.16), rgba(8, 3, 1, 0.96));
+  border-radius: 14px;
+  border: 1px solid rgba(255, 240, 210, 0.18);
+  padding: 14px 16px 16px;
+  box-shadow:
+    0 10px 26px rgba(0, 0, 0, 0.75),
+    inset 0 0 30px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+}
+
+/* 卡片边缘加一圈暗金描边，像木框 */
+.wb-card::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 220, 160, 0.12);
+  pointer-events: none;
+}
+
+.wb-card h3 {
+  font-size: 15px;
+  color: #ffd54f;
+  margin-bottom: 6px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.wb-desc {
+  font-size: 12px;
+  color: #e8dcc5;
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+/* 文本框像写在宣纸上 */
+.wb-textarea {
+  width: 100%;
+  min-height: 90px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 245, 220, 0.3);
+  background: linear-gradient(
+    to bottom,
+    rgba(41, 18, 10, 0.96),
+    rgba(16, 5, 3, 0.98)
+  );
+  color: #fef5df;
+  font-size: 13px;
+  font-family: "STKaiti", "KaiTi", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  resize: vertical;
+  margin-bottom: 10px;
+}
+
+.wb-textarea::placeholder {
+  color: rgba(245, 230, 200, 0.55);
+}
+
+/* 剧本预览：等宽+微微泛黄 */
+.wb-script-preview {
+  background: radial-gradient(circle at top left, rgba(255, 248, 220, 0.06), rgba(0, 0, 0, 0.82));
+  padding: 10px 11px;
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 245, 210, 0.4);
+  color: #f8ebc8;
+  font-size: 12px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  max-height: 260px;
+  overflow-y: auto;
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.7);
+  font-family: "SFMono-Regular", Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+/* 下拉选择也统一成暗木色 */
+.wb-select {
+  width: 100%;
+  padding: 7px 11px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 240, 210, 0.28);
+  background: #ffffff; /* 背景改为白色，确保黑色文字清晰可见 */
+  color: #000000; /* 文字颜色改为黑色 */
+  font-size: 13px;
+  cursor: pointer;
+}
+
+.wb-select option {
+  color: #000000; /* 下拉选项文字颜色也改为黑色 */
+  background: #ffffff;
+}
+
+/* ===== 中央：皮影戏台卡片 ===== */
+/* 中间列第一个卡片作为"戏台" */
+.workbench-col:nth-child(2) .wb-card:first-child {
+  background:
+    radial-gradient(circle at center, rgba(255, 250, 230, 0.88), rgba(24, 4, 2, 0.98));
+  border-radius: 18px;
+  padding-top: 38px; /* 预留顶部帷幕高度 */
+}
+
+/* 顶部红色帷幕 */
+.workbench-col:nth-child(2) .wb-card:first-child::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 8%;
+  right: 8%;
+  height: 30px;
+  border-radius: 0 0 18px 18px;
+  background:
+    radial-gradient(circle at 10% 0, rgba(255, 255, 255, 0.4), transparent 55%),
+    radial-gradient(circle at 90% 0, rgba(255, 255, 255, 0.3), transparent 60%),
+    linear-gradient(90deg, #5d1010, #b21f1f, #5d1010);
+  box-shadow:
+    0 6px 10px rgba(0, 0, 0, 0.85),
+    inset 0 -4px 6px rgba(0, 0, 0, 0.8);
+  z-index: 1;
+}
+
+/* 下方木质台沿 */
+.workbench-col:nth-child(2) .wb-card:first-child::after {
+  content: "";
+  position: absolute;
+  bottom: -4px;
+  left: 10%;
+  right: 10%;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #3e1d0e, #6a3d1f, #3e1d0e);
+  box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.7);
+}
+
+/* 舞台卡片内标题和说明更低调一点，把视觉重心给幕布 */
+.workbench-col:nth-child(2) .wb-card:first-child h3 {
+  text-align: center;
+  margin-top: -6px;
+  position: relative;
+  z-index: 2;
+}
+
+.workbench-col:nth-child(2) .wb-card:first-child .wb-desc {
+  text-align: center;
+  margin-bottom: 10px;
+  position: relative;
+  z-index: 2;
+}
+
+/* 让 PuppetStage 区域四周有一点"灯圈" */
+.workbench-col:nth-child(2) .wb-card:first-child .stage,
+.workbench-col:nth-child(2) .wb-card:first-child .puppet-stage {
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow:
+    0 0 30px rgba(255, 250, 220, 0.35),
+    inset 0 0 18px rgba(0, 0, 0, 0.9);
+}
+
+/* ===== 右侧：分析+成片 ===== */
+/* 分析结果卡片：左侧金色竖线，像先生在竹简边上批注 */
+.wb-analysis-list {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0 0;
+}
+
+.wb-analysis-list li {
+  padding: 7px 10px;
+  margin-bottom: 6px;
+  background: rgba(0, 0, 0, 0.65);
+  border-left: 3px solid #ffca28;
+  border-radius: 6px;
+  font-size: 12px;
+  color: #f0e6cf;
+  line-height: 1.5;
+}
+
+/* 视频框：更像灯光下的幕布画面 */
+.video-placeholder {
+  margin-bottom: 14px;
+}
+
+.video-frame {
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
+  border: 2px solid rgba(255, 220, 160, 0.6);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 252, 235, 0.85), rgba(45, 12, 4, 0.98));
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 18px;
+  box-shadow:
+    0 14px 28px rgba(0, 0, 0, 0.85),
+    inset 0 0 36px rgba(0, 0, 0, 0.9);
+  position: relative;
+  overflow: hidden;
+}
+
+/* 视频加载状态 */
+.video-loading {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 252, 235, 0.75), rgba(45, 12, 4, 0.95));
+}
+
+.video-loading-spinner {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.spinner-ring {
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(255, 220, 160, 0.3);
+  border-top-color: #ffca28;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+.spinner-ring:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.spinner-ring:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.video-loading-text {
+  font-size: 16px;
+  color: #4e0904;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.video-loading-progress {
+  width: 100%;
+  max-width: 300px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  margin-bottom: 16px;
+  border: 1px solid rgba(255, 220, 160, 0.4);
+}
+
+.video-loading-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ff7043, #ffca28, #ff7043);
+  background-size: 200% 100%;
+  animation: progress-shimmer 2s linear infinite;
+  border-radius: 12px;
+  transition: width 0.3s ease;
+}
+
+@keyframes progress-shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.video-loading-progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: #2b0904;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+.video-loading-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 300px;
+  font-size: 12px;
+  color: #4e0904;
+}
+
+.video-loading-steps > div {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.video-loading-steps .step-done {
+  background: rgba(255, 202, 40, 0.3);
+  color: #2b0904;
+  font-weight: 600;
+}
+
+.video-loading-steps .step-pending {
+  opacity: 0.6;
+}
+
+/* 视频就绪状态 */
+.video-ready {
+  padding: 0;
+  background: #000;
+  position: relative;
+}
+
+.video-player {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.video-title-overlay {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: #ffca28;
+  padding: 4px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+
+.video-icon {
+  font-size: 32px;
+  letter-spacing: 6px;
+}
+
+.video-title {
+  font-size: 15px;
+  color: #4e0904;
+  font-weight: 600;
+}
+
+.video-note {
+  font-size: 11px;
+  color: #7a4a22;
+}
+
+/* ===== 剧本生成加载动画 ===== */
+.script-loading {
+  padding: 30px 20px;
+  text-align: center;
+  background: radial-gradient(circle at top, rgba(255, 245, 230, 0.1), rgba(8, 3, 1, 0.9));
+  border-radius: 8px;
+  border: 1px dashed rgba(255, 245, 210, 0.4);
+}
+
+.script-loading-spinner {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.script-loading-text {
+  font-size: 16px;
+  color: #ffca28;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.script-loading-progress {
+  width: 100%;
+  max-width: 300px;
+  height: 24px;
+  background: rgba(0, 0, 0, 0.3);
+  border-radius: 12px;
+  overflow: hidden;
+  position: relative;
+  margin: 0 auto 16px;
+  border: 1px solid rgba(255, 220, 160, 0.4);
+}
+
+.script-loading-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #ff7043, #ffca28, #ff7043);
+  background-size: 200% 100%;
+  animation: progress-shimmer 2s linear infinite;
+  border-radius: 12px;
+  transition: width 0.3s ease;
+}
+
+.script-loading-progress-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 12px;
+  font-weight: 600;
+  color: #2b0904;
+  text-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+}
+
+.script-loading-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
+  font-size: 12px;
+  color: #f8e3c0;
+}
+
+.script-loading-steps > div {
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.script-loading-steps .step-done {
+  background: rgba(255, 202, 40, 0.3);
+  color: #2b0904;
+  font-weight: 600;
+}
+
+.script-loading-steps .step-pending {
+  opacity: 0.6;
+}
+
+/* 光影和音乐控制像调光台 */
+.video-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 12px;
+  color: #e8dcc6;
+}
+
+.video-control-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.video-control-item input[type="range"] {
+  flex: 1;
+}
+
+/* ===== 按钮稍微改成更"戏曲感"的钮扣 ===== */
+.btn-primary,
+.btn-secondary {
+  border-radius: 999px;
+  font-size: 13px;
+  padding: 7px 14px;
+  cursor: pointer;
+  transition: transform 0.1s ease, box-shadow 0.16s ease, background 0.16s ease;
+}
+
+/* 主按钮：红金渐变，像戏服上的扣子 */
+.btn-primary {
+  width: 100%;
+  background: linear-gradient(135deg, #ff7043, #ffca28);
+  color: #2b0904;
+  border: none;
+  font-weight: 600;
+  box-shadow: 0 8px 18px rgba(255, 168, 90, 0.6);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 12px 24px rgba(255, 180, 100, 0.8);
+}
+
+.btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* 次按钮：暗金描边 */
+.btn-secondary {
+  background: rgba(0, 0, 0, 0.5);
+  color: #f2e4cf;
+  border: 1px solid rgba(255, 235, 200, 0.36);
+}
+
+.btn-secondary:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.btn-secondary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,217 @@
+const SHADOW_PUPPET_SUPPLEMENT_RESOURCES = [
+  {
+    id: 'unesco-intangible-heritage',
+    title: 'Chinese shadow puppetry (UNESCO Intangible Cultural Heritage)',
+    type: 'article',
+    level: 'all',
+    source: 'UNESCO',
+    summary: 'Overview of Chinese shadow puppetry as an inscribed element of intangible heritage.',
+    usage: 'Use for background reading and culture introduction.',
+    url: 'https://ich.unesco.org/en/RL/chinese-shadow-puppetry-00421',
+    tags: ['history', 'heritage', 'overview'],
+  },
+  {
+    id: 'wikipedia-shadow-play',
+    title: 'Shadow play (Wikipedia)',
+    type: 'article',
+    level: 'all',
+    source: 'Wikipedia',
+    summary: 'General introduction to shadow play history and cross-regional forms.',
+    usage: 'Use for quick concept comparison before class discussion.',
+    url: 'https://en.wikipedia.org/wiki/Shadow_play',
+    tags: ['history', 'comparison'],
+  },
+  {
+    id: 'wikimedia-shadow-puppetry',
+    title: 'Category: Shadow puppetry (Wikimedia Commons)',
+    type: 'image',
+    level: 'all',
+    source: 'Wikimedia Commons',
+    summary: 'Open media collection for shadow puppetry images and references.',
+    usage: 'Use as visual references for slides and character design comparison.',
+    url: 'https://commons.wikimedia.org/wiki/Category:Shadow_puppetry',
+    tags: ['open-media', 'image', 'reference'],
+  },
+  {
+    id: 'visit-beijing-shadow-puppet',
+    title: '北京文旅网：皮影戏',
+    type: 'article',
+    level: 'all',
+    source: '北京文旅网',
+    summary: 'Chinese-language intro on the origin, form, and transmission context of shadow puppetry.',
+    usage: 'Use as a Chinese reading resource in lesson warm-up.',
+    url: 'https://www.visitbeijing.com.cn/article/4MXVR6M7XtY',
+    tags: ['chinese', 'history', 'intro'],
+  },
+  {
+    id: 'europeana-shadow-theatre',
+    title: 'Europeana: The history of shadow theatre',
+    type: 'article',
+    level: 'advanced',
+    source: 'Europeana',
+    summary: 'Timeline-style material for broader history of shadow theatre.',
+    usage: 'Use for extension reading and international comparison tasks.',
+    url: 'https://www.europeana.eu/en/stories/the-history-of-shadow-theatre',
+    tags: ['history', 'global', 'extension'],
+  },
+  {
+    id: 'bili-tradition-intro',
+    title: '中国传统文化《皮影戏》',
+    type: 'video',
+    level: 'all',
+    source: 'Bilibili',
+    summary: 'Basic intro to source, form, and performance process.',
+    usage: 'Use for lesson opening and concept demonstration.',
+    url: 'https://b23.tv/UOphTOi',
+    tags: ['video', 'intro'],
+  },
+  {
+    id: 'bili-making-demo',
+    title: '两千多年前的皮影戏可以如此精彩',
+    type: 'video',
+    level: 'all',
+    source: 'Bilibili',
+    summary: 'Creator-made and performed sample (三打白骨精).',
+    usage: 'Use for making-process and performance case analysis.',
+    url: 'https://b23.tv/G2nvB1V',
+    tags: ['video', 'making', 'performance'],
+  },
+  {
+    id: 'bili-documentary',
+    title: '皮影艺术纪录片',
+    type: 'video',
+    level: 'all',
+    source: 'Bilibili',
+    summary: 'Documentary material on the history and inheritance of shadow puppetry.',
+    usage: 'Use for heritage-value discussion and reflection writing.',
+    url: 'https://b23.tv/aGgxqn1',
+    tags: ['video', 'documentary', 'heritage'],
+  },
+  {
+    id: 'bili-classic-huaxian',
+    title: '华县皮影经典剧目《劈山救母》',
+    type: 'video',
+    level: 'all',
+    source: 'Bilibili',
+    summary: 'Representative Huaxian performance style clip.',
+    usage: 'Use for regional style comparison and movement imitation.',
+    url: 'https://b23.tv/DonD8Qn',
+    tags: ['video', 'regional', 'style'],
+  },
+  {
+    id: 'bili-classic-tangshan',
+    title: '唐山皮影戏《白蛇传》断桥',
+    type: 'video',
+    level: 'all',
+    source: 'Bilibili',
+    summary: 'Tangshan troupe performance clip for vocal and rhythm observation.',
+    usage: 'Use for performance rhythm and music coordination analysis.',
+    url: 'https://b23.tv/g1JR6NM',
+    tags: ['video', 'regional', 'music'],
+  },
+  {
+    id: 'bili-jinan-mu-guiying',
+    title: '冀南皮影《穆桂英挂帅》',
+    type: 'video',
+    level: 'all',
+    source: 'Bilibili',
+    summary: 'Jinan style case for role type and action comparison.',
+    usage: 'Use in role-type teaching and scene blocking practice.',
+    url: 'https://b23.tv/lXo0Kht',
+    tags: ['video', 'regional', 'role'],
+  },
+  {
+    id: 'bili-haining-water-overflow',
+    title: '海宁皮影《水漫金山》',
+    type: 'video',
+    level: 'all',
+    source: 'Bilibili',
+    summary: 'Haining style stage and narrative presentation example.',
+    usage: 'Use for stage transition and story segmentation exercises.',
+    url: 'https://b23.tv/gsLZABl',
+    tags: ['video', 'regional', 'stage'],
+  },
+  {
+    id: 'bili-lufeng-midautumn',
+    title: '陆丰皮影《嫦娥奔月·偷丹》',
+    type: 'video',
+    level: 'all',
+    source: 'Bilibili',
+    summary: 'Lingnan-area performance sample with festival topic.',
+    usage: 'Use for seasonal/festival thematic lesson design.',
+    url: 'https://b23.tv/e8BToxa',
+    tags: ['video', 'regional', 'festival'],
+  },
+  {
+    id: 'bili-mianyang-xuedingshan',
+    title: '沔阳皮影《薛丁山征西》',
+    type: 'video',
+    level: 'all',
+    source: 'Bilibili',
+    summary: 'Hubei regional sample with strong narrative action sequence.',
+    usage: 'Use for action sequencing and pacing practice.',
+    url: 'https://b23.tv/ch7qDnQ',
+    tags: ['video', 'regional', 'action'],
+  },
+  {
+    id: 'bili-wanwanqiang-borrow-water',
+    title: '碗碗腔皮影《借水》',
+    type: 'video',
+    level: 'all',
+    source: 'Bilibili',
+    summary: 'Qinqiang-related singing style sample.',
+    usage: 'Use for vocal style and music accompaniment comparison.',
+    url: 'https://b23.tv/m4GN8L2',
+    tags: ['video', 'music', 'regional'],
+  },
+];
+
+const LESSON_RESOURCE_RULES = [
+  {
+    match: ['认识', '由来', '历史', '非遗'],
+    prefer: [
+      'unesco-intangible-heritage',
+      'visit-beijing-shadow-puppet',
+      'bili-tradition-intro',
+      'bili-documentary',
+      'wikipedia-shadow-play',
+    ],
+  },
+  {
+    match: ['制作', '造型', '组装', '材料', '道具'],
+    prefer: [
+      'wikimedia-shadow-puppetry',
+      'bili-making-demo',
+      'bili-classic-huaxian',
+      'bili-classic-tangshan',
+      'bili-jinan-mu-guiying',
+    ],
+  },
+  {
+    match: ['表演', '创编', '排练', '音乐', '舞台'],
+    prefer: [
+      'bili-classic-huaxian',
+      'bili-classic-tangshan',
+      'bili-haining-water-overflow',
+      'bili-lufeng-midautumn',
+      'bili-mianyang-xuedingshan',
+      'bili-wanwanqiang-borrow-water',
+    ],
+  },
+];
+
+function pickByIds(ids) {
+  const map = new Map(SHADOW_PUPPET_SUPPLEMENT_RESOURCES.map((item) => [item.id, item]));
+  return ids.map((id) => map.get(id)).filter(Boolean);
+}
+
+export function getRecommendedLessonResources(lessonTitle = '') {
+  const title = String(lessonTitle || '');
+  const rule = LESSON_RESOURCE_RULES.find((r) => r.match.some((m) => title.includes(m)));
+  if (rule) {
+    return pickByIds(rule.prefer);
+  }
+  return SHADOW_PUPPET_SUPPLEMENT_RESOURCES.slice(0, 8);
+}
+
+export { SHADOW_PUPPET_SUPPLEMENT_RESOURCES };

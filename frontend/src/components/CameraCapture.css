@@ -1,0 +1,303 @@
+.camera-capture {
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.1) 0%, rgba(101, 67, 33, 0.1) 100%);
+  border: 2px solid rgba(184, 134, 11, 0.3);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.camera-header {
+  margin-bottom: 15px;
+}
+
+.camera-header h3 {
+  margin: 0;
+  color: #8B4513;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.camera-header .icon {
+  font-size: 20px;
+}
+
+.camera-controls {
+  text-align: center;
+}
+
+.camera-btn {
+  width: 100%;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  white-space: nowrap;
+}
+
+.open-btn {
+  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
+  color: white;
+}
+
+.open-btn:hover {
+  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(76, 175, 80, 0.4);
+}
+
+.record-btn {
+  background: linear-gradient(135deg, #DC143C 0%, #B22222 100%);
+  color: white;
+  font-size: 12px;
+}
+
+.record-btn:hover {
+  background: linear-gradient(135deg, #B22222 0%, #8B0000 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(220, 20, 60, 0.4);
+}
+
+.stop-btn {
+  background: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
+  color: white;
+  font-size: 12px;
+}
+
+.stop-btn:hover {
+  background: linear-gradient(135deg, #F7931E 0%, #E8851C 100%);
+  transform: translateY(-2px);
+}
+
+.close-btn {
+  background: rgba(255, 255, 255, 0.1);
+  color: #8B4513;
+  border: 1px solid rgba(184, 134, 11, 0.4);
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.btn-icon {
+  font-size: 16px;
+}
+
+.camera-tips {
+  margin-top: 12px;
+  font-size: 12px;
+  color: #999;
+  font-style: italic;
+}
+
+.camera-preview {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  background: #000;
+  border-radius: 8px;
+  overflow: hidden;
+  aspect-ratio: 16 / 9;
+  min-height: 200px;
+}
+
+.camera-preview-label {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  margin: 0;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.9);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 4px 10px;
+  border-radius: 6px;
+  z-index: 5;
+}
+
+.camera-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #000;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* 镜像效果：让用户在录制过程中能看到自己（像镜子一样） */
+.camera-video.mirrored {
+  transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+}
+
+.recording-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(220, 20, 60, 0.9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  z-index: 10;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+.recording-dot {
+  width: 8px;
+  height: 8px;
+  background: white;
+  border-radius: 50%;
+  animation: blink 1s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+.camera-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.camera-actions .camera-btn {
+  flex: 1;
+}
+
+.recorded-video {
+  margin-top: 10px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+}
+
+.recorded-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.recorded-label {
+  font-size: 13px;
+  color: #8B4513;
+  font-weight: 500;
+  margin: 0;
+}
+
+.delete-recorded-btn {
+  padding: 6px 14px;
+  font-size: 12px;
+  background: rgba(180, 60, 60, 0.9);
+  color: #fff;
+  min-width: auto;
+}
+
+.delete-recorded-btn:hover {
+  background: rgba(160, 40, 40, 1);
+}
+
+.convert-bvh-btn {
+  margin-top: 10px;
+  background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+  color: white;
+  font-size: 13px;
+}
+
+.convert-bvh-btn:hover {
+  background: linear-gradient(135deg, #1b5e20 0%, #0d3d0d 100%);
+  transform: translateY(-2px);
+}
+
+.recorded-preview {
+  width: 100%;
+  border-radius: 6px;
+  background: #000;
+}
+
+.recorded-tips {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #4CAF50;
+  text-align: center;
+}
+
+.camera-actions-live {
+  flex-wrap: wrap;
+}
+
+.camera-actions-live .camera-btn {
+  min-width: 120px;
+}
+
+.live-btn {
+  background: linear-gradient(135deg, #1e88e5 0%, #1565c0 100%);
+  color: white;
+  font-size: 12px;
+}
+
+.live-btn:hover {
+  background: linear-gradient(135deg, #1976d2 0%, #0d47a1 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(30, 136, 229, 0.45);
+}
+
+.live-stop-btn {
+  background: linear-gradient(135deg, #6d4c41 0%, #4e342e 100%);
+  color: white;
+  font-size: 12px;
+}
+
+.live-stop-btn:hover {
+  background: linear-gradient(135deg, #5d4037 0%, #3e2723 100%);
+  transform: translateY(-2px);
+}
+
+.live-indicator {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: rgba(30, 136, 229, 0.9);
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 10;
+}
+
+.camera-live-status {
+  margin: 0;
+  font-size: 12px;
+  color: #8B4513;
+}

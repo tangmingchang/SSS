@@ -1,0 +1,248 @@
+.character-selector {
+  position: relative;
+  background: linear-gradient(135deg, rgba(139, 69, 19, 0.12) 0%, rgba(101, 67, 33, 0.16) 100%);
+  border: 2px solid rgba(184, 134, 11, 0.5);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+  overflow: hidden; /* 让装饰不溢出 */
+}
+
+/* 顶部一条金色横梁 + 两侧小装饰 */
+.character-selector::before,
+.character-selector::after {
+  content: "";
+  position: absolute;
+  top: 10px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(to right, rgba(255, 215, 130, 0.9), rgba(255, 196, 120, 0.7));
+  opacity: 0.9;
+}
+
+.character-selector::before {
+  left: 16px;
+  right: 16px;
+}
+
+.character-selector::after {
+  left: 24px;
+  right: 24px;
+  top: 16px;
+  opacity: 0.6;
+}
+
+.character-selector-header {
+  margin-bottom: 15px;
+}
+
+.character-selector-header h4 {
+  margin: 0;
+  color: #8B4513;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+
+.character-selector-header .icon {
+  font-size: 20px;
+}
+
+.character-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 15px;
+}
+
+@keyframes charAppear {
+  0% {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.char-item {
+  position: relative;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 10px;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  animation: charAppear 0.4s ease-out;
+}
+
+.char-item:hover {
+  background: rgba(255, 255, 255, 0.1);
+  transform: translateY(-3px);
+}
+
+.char-item.selected {
+  background: rgba(220, 20, 60, 0.2);
+  border: 2px solid #DC143C;
+}
+
+.char-thumbnail {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 8px;
+  border-radius: 8px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(184, 134, 11, 0.3);
+  transition: all 0.3s;
+}
+
+.char-item:hover .char-thumbnail {
+  border-color: #B8860B;
+  box-shadow: 0 4px 12px rgba(184, 134, 11, 0.4);
+}
+
+.char-item.selected .char-thumbnail {
+  border-color: #DC143C;
+  box-shadow: 0 4px 12px rgba(220, 20, 60, 0.4);
+}
+
+.char-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: crisp-edges;
+}
+
+.selected-badge {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;
+  height: 20px;
+  background: #DC143C;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.char-name {
+  display: block;
+  font-size: 14px;
+  color: #8B4513;
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.char-item.selected .char-name {
+  color: #DC143C;
+  font-weight: 600;
+}
+
+.char-desc {
+  display: block;
+  font-size: 11px;
+  color: #999;
+  font-style: italic;
+}
+
+.char-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.char-dot {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 20% 20%, #ffe082 0%, #f57f17 35%, #5d4037 90%);
+}
+
+.char-dot.role-monkey {
+  background: radial-gradient(circle at 20% 20%, #ffe082 0%, #ffb300 35%, #4e342e 90%);
+}
+
+.char-dot.role-demon {
+  background: radial-gradient(circle at 20% 20%, #f8bbd0 0%, #ec407a 35%, #4a148c 90%);
+}
+
+/* 角色预览提示框 */
+.character-preview {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 10px;
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 12px;
+  border-radius: 8px;
+  min-width: 200px;
+  z-index: 100;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(184, 134, 11, 0.5);
+}
+
+.preview-title {
+  font-size: 12px;
+  color: #B8860B;
+  margin-bottom: 8px;
+  font-weight: 600;
+  text-align: center;
+}
+
+.preview-parts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: center;
+}
+
+.preview-part {
+  padding: 4px 8px;
+  background: rgba(184, 134, 11, 0.2);
+  border-radius: 4px;
+  font-size: 11px;
+}
+
+.part-label {
+  color: #FFD700;
+}
+
+.preview-text {
+  color: #FFD700;
+  font-size: 12px;
+  margin-bottom: 6px;
+}
+
+.preview-note {
+  color: #999;
+  font-size: 11px;
+  font-style: italic;
+}
+
+.character-tips {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.character-tips p {
+  margin: 0;
+  font-size: 12px;
+  color: #666;
+  font-style: italic;
+}
+

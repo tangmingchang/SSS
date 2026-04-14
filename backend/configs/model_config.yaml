@@ -1,0 +1,49 @@
+# MyPiying 模型配置文件
+
+# 基础模型路径
+pretrained_base_model_path: "models/pretrained/stable-diffusion-v1-5"
+pretrained_vae_path: "models/pretrained/sd-vae-ft-mse"
+image_encoder_path: "models/pretrained/image_encoder"
+
+# Wan模型路径
+wan_model_path: "models/pretrained/wan_model"
+motion_module_path: "models/pretrained/motion_module.pth"
+
+# 预训练权重路径
+denoising_unet_path: "models/pretrained/denoising_unet.pth"
+reference_unet_path: "models/pretrained/reference_unet.pth"
+pose_guider_path: "models/pretrained/pose_guider.pth"
+
+# Relighting LoRA路径
+relighting_lora_path: "models/pretrained/relighting_lora.safetensors"
+
+# 推理配置
+inference_config: "configs/inference.yaml"
+
+# 设备配置
+device: "cuda"
+weight_dtype: "float16"  # float16 or float32
+
+# 默认生成参数
+default_width: 512
+default_height: 768
+default_length: 24  # 帧数
+default_num_inference_steps: 25
+default_guidance_scale: 3.5
+default_seed: 42
+
+# 图层配置
+layer_config_path: "configs/layer_config.yaml"
+
+# 姿态检测配置
+pose_detector:
+  type: "dwpose"  # dwpose or openpose
+  model_path: "models/pretrained/dwpose"
+  detection_threshold: 0.3
+
+# 数据路径
+data_root: "data"
+characters_dir: "data/characters"
+videos_dir: "data/videos"
+outputs_dir: "data/outputs"
+
