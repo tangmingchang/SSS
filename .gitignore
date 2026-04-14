@@ -81,6 +81,7 @@ backend-teach/prisma/*.db-journal
 !/README.md
 !/package.json
 !/package-lock.json
+!/vercel.json
 !/backend/
 !/backend/**
 !/frontend/
