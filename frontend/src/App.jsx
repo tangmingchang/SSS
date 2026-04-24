@@ -316,7 +316,7 @@ function App() {
           <div className="header-left">
             <div className="app-title">
               <span className="title-icon">影</span>
-              动未来·皮影戏智能生成与教学平台
+              动智坊·皮影戏智能生成与教学平台
             </div>
             <div className="app-subtitle">AI 动作生成 × 物理仿真 × 非遗数字化</div>
           </div>
