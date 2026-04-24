@@ -33,7 +33,7 @@ function HomePage({ onStart }) {
         <div className="home-left">
           <h1 className="home-title">
             <span className="title-icon" aria-hidden="true">影</span>
-            动未来
+            动智坊
           </h1>
 
           <h2 className="home-subtitle">皮影戏智能生成与教学平台</h2>
